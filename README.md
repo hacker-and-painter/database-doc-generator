@@ -19,7 +19,7 @@ Select the appropriate numbers choose database type
 (Enter 'c' to cancel):
  3
 input database name:
-test
+guns-lite
 input host:
 localhost
 input port(default 5432):
@@ -32,7 +32,7 @@ root
 ```
 - 输入完成后回车，即可生成数据库文档目录${dbname}-doc,目录中文档以markdown文件为载体：
 
-![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190607194345.png)
+![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190607201225.png)
 
 - 确保安装了gitbook后，进入上述文件目录的命令行窗口运行：gitbook serve
 
@@ -55,12 +55,11 @@ info: >> generation finished with success in 0.9s !
 Starting server ...
 Serving book on http://localhost:4000
 ```
-- 访问 http://localhost:4000，即可在线查看数据库文档
+- 访问 http://localhost:4000 ，即可在线查看数据库文档
 
-![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190607194535.png)
+![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190607200945.png)
 
-![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190607194600.png)
-
+![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190607201020.png)
 
 ## 后续计划 TODO
 
