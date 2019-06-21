@@ -80,6 +80,13 @@
             <artifactId>sqljdbc42</artifactId>
             <version>6.0.8112</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.spring4all</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>1.9.0.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>
