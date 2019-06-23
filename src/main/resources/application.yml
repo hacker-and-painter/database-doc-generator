@@ -5,7 +5,7 @@ swagger:
   # 是否启用swagger，默认：true
   enabled: true
   # 标题
-  title: "Spring Data Rest 构建RESTful API"
+  title: "Spring Boot 实现数据库文档生成"
   contact:
     # 维护人
     name: "高行行"
@@ -25,4 +25,8 @@ swagger:
   license-url: "https://www.apache.org/licenses/LICENSE-2.0.html"
 
 server:
-  port: 8081
+  port: 8080
+
+spring:
+  freemarker:
+    template-loader-path=classpath: /templates

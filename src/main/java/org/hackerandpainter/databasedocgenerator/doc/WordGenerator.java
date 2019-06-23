@@ -6,6 +6,7 @@ import org.hackerandpainter.databasedocgenerator.bean.ColumnVo;
 import org.hackerandpainter.databasedocgenerator.bean.TableVo;
 
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,11 +22,12 @@ public class WordGenerator {
     private static Configuration configuration = null;
 
     static {
-
         configuration = new Configuration();
         configuration.setDefaultEncoding("utf-8");
         try {
-            configuration.setDirectoryForTemplateLoading(new File("./"));
+            URL url = Thread.currentThread().getContextClassLoader().getResource("./");
+            File file = new File(url.getPath());
+            configuration.setDirectoryForTemplateLoading(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,7 +42,7 @@ public class WordGenerator {
         map.put("dbName", dbName);
         map.put("tables", list);
         try {
-            Template template = configuration.getTemplate("database.html");
+            Template template = configuration.getTemplate("templates/database.html");
             String name = dbName + "-doc" + File.separator + dbName + ".html";
             File f = new File(name);
             Writer w = new OutputStreamWriter(new FileOutputStream(f), "utf-8");

@@ -52,7 +52,6 @@ public abstract class Generator {
         save2File(list);
         //保存word
         WordGenerator.createDoc(dbName,list);
-
     }
 
     public void save2File(List<TableVo> tables) {

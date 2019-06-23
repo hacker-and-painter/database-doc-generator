@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center;">guns-lite数据库设计文档</h1>
+<h2>表汇总</h2>
+<table width="100%">
+
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td> 名称</td>
+        <td>备注</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>t_cms_article</td>
+        <td>文章</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_cms_banner</td>
+        <td>banner</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_cms_channel</td>
+        <td>栏目</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_cms_contacts</td>
+        <td>客户邀约信息</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_cfg</td>
+        <td>系统参数</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_dept</td>
+        <td>部门表</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_dict</td>
+        <td>字典表</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_file_info</td>
+        <td>文件信息</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_login_log</td>
+        <td>登录记录</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_menu</td>
+        <td>菜单表</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_notice</td>
+        <td>通知表</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_operation_log</td>
+        <td>操作日志</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_relation</td>
+        <td>角色和菜单关联表</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_role</td>
+        <td>角色表</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_task</td>
+        <td>定时任务</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_task_log</td>
+        <td>定时任务日志</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>t_sys_user</td>
+        <td>管理员表</td>
+    </tr>
+    </tbody>
+</table>
+<h2>表明细</h2>
+<br>
+<h3>文章(t_cms_article)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>bigint(20)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>创建者</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>创建时间/注册时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新人</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>author</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>content</td>
+        <td>text</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>title</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>id_channel</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>img</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>banner(t_cms_banner)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>bigint(20)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>创建者</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>创建时间/注册时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新人</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>title</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>url</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>type</td>
+        <td>varchar(18)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>id_file</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>banner文件id</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>栏目(t_cms_channel)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>bigint(20)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>创建者</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>创建时间/注册时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新者</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>name</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>code</td>
+        <td>varchar(36)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>客户邀约信息(t_cms_contacts)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>bigint(20)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>创建人</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>创建时间/注册时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新人</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>email</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>mobile</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>remark</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>user_name</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>系统参数(t_sys_cfg)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>bigint(64)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>自增主键</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>cfg_name</td>
+        <td>varchar(100)</td>
+        <td></td>
+        <td>是</td>
+        <td>参数名</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>cfg_value</td>
+        <td>varchar(3000)</td>
+        <td></td>
+        <td>是</td>
+        <td>参数值</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>cfg_desc</td>
+        <td>varchar(200)</td>
+        <td></td>
+        <td>是</td>
+        <td>参数描述</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>部门表(t_sys_dept)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>int(11)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>主键id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>num</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>排序</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>pid</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>父部门id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>pids</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>父级ids</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>simplename</td>
+        <td>varchar(45)</td>
+        <td></td>
+        <td>是</td>
+        <td>简称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>fullname</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>全称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>tips</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>提示</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>version</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>版本（乐观锁保留字段）</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>字典表(t_sys_dict)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>int(11)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>主键id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>num</td>
+        <td>varchar(32)</td>
+        <td></td>
+        <td>是</td>
+        <td>排序</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>pid</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>父级字典</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>name</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>名称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>tips</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>提示</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>文件信息(t_sys_file_info)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>bigint(20)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>创建人</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>创建时间/注册时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新人</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>最后更新时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>original_file_name</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>real_file_name</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>登录记录(t_sys_login_log)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>int(65)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>主键</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>logname</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>日志名称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>userid</td>
+        <td>int(65)</td>
+        <td></td>
+        <td>是</td>
+        <td>管理员id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>创建时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>succeed</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>是否执行成功</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>message</td>
+        <td>text</td>
+        <td></td>
+        <td>是</td>
+        <td>具体消息</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>ip</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>登录ip</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>菜单表(t_sys_menu)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>bigint(20)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>主键id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>code</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>菜单编号</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>pcode</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>菜单父编号</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>pcodes</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>当前菜单的所有父菜单编号</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>name</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>菜单名称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>icon</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>菜单图标</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>url</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>url地址</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>num</td>
+        <td>int(65)</td>
+        <td></td>
+        <td>是</td>
+        <td>菜单排序号</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>levels</td>
+        <td>int(65)</td>
+        <td></td>
+        <td>是</td>
+        <td>菜单层级</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>ismenu</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>是否是菜单（1：是  0：不是）</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>tips</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>备注</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>status</td>
+        <td>int(65)</td>
+        <td></td>
+        <td>是</td>
+        <td>菜单状态 :  1:启用   0:不启用</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>isopen</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>是否打开:    1:打开   0:不打开</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>通知表(t_sys_notice)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>int(11)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>主键</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>title</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>标题</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>type</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>类型</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>content</td>
+        <td>text</td>
+        <td></td>
+        <td>是</td>
+        <td>内容</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>创建时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>创建人</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>操作日志(t_sys_operation_log)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>int(65)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>主键</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>logtype</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>日志类型</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>logname</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>日志名称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>userid</td>
+        <td>int(65)</td>
+        <td></td>
+        <td>是</td>
+        <td>用户id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>classname</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>类名称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>method</td>
+        <td>text</td>
+        <td></td>
+        <td>是</td>
+        <td>方法名称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>创建时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>succeed</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>是否成功</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>message</td>
+        <td>text</td>
+        <td></td>
+        <td>是</td>
+        <td>备注</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>角色和菜单关联表(t_sys_relation)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>int(11)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>主键</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>menuid</td>
+        <td>bigint(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>菜单id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>roleid</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>角色id</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>角色表(t_sys_role)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>int(11)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>主键id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>num</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>序号</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>pid</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>父角色id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>name</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>角色名称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>deptid</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>部门名称</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>tips</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>提示</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>version</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>保留字段(暂时没用）</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>定时任务(t_sys_task)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>bigint(64)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>自增主键</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>name</td>
+        <td>varchar(50)</td>
+        <td></td>
+        <td>是</td>
+        <td>任务名</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>job_group</td>
+        <td>varchar(50)</td>
+        <td></td>
+        <td>是</td>
+        <td>任务组</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>job_class</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>执行类</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>note</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>任务说明</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>cron</td>
+        <td>varchar(50)</td>
+        <td></td>
+        <td>是</td>
+        <td>定时规则</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>data</td>
+        <td>text</td>
+        <td></td>
+        <td>是</td>
+        <td>执行参数</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>exec_at</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>执行时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>exec_result</td>
+        <td>text</td>
+        <td></td>
+        <td>是</td>
+        <td>执行结果</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>disabled</td>
+        <td>tinyint(1)</td>
+        <td></td>
+        <td>是</td>
+        <td>是否禁用</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>concurrent</td>
+        <td>tinyint(4)</td>
+        <td></td>
+        <td>是</td>
+        <td>是否允许并发</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>定时任务日志(t_sys_task_log)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>bigint(64)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>自增主键</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>name</td>
+        <td>varchar(50)</td>
+        <td></td>
+        <td>是</td>
+        <td>任务名</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>exec_at</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>执行时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>exec_success</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>执行结果（成功:1、失败:0)</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>job_exception</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>抛出异常</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>id_task</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<h3>管理员表(t_sys_user)</h3>
+<table   width="100%">
+    <thead style="background-color: #b9c9fe;font-weight: bold;">
+    <tr>
+        <td>列名</td>
+        <td>类型</td>
+        <td>KEY</td>
+        <td>可否为空</td>
+        <td>注释</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr style="background-color: #e8edff;">
+        <td>id</td>
+        <td>int(11)</td>
+        <td>PRI</td>
+        <td>否</td>
+        <td>主键id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>avatar</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>头像</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>account</td>
+        <td>varchar(45)</td>
+        <td></td>
+        <td>是</td>
+        <td>账号</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>password</td>
+        <td>varchar(45)</td>
+        <td></td>
+        <td>是</td>
+        <td>密码</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>salt</td>
+        <td>varchar(45)</td>
+        <td></td>
+        <td>是</td>
+        <td>md5密码盐</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>name</td>
+        <td>varchar(45)</td>
+        <td></td>
+        <td>是</td>
+        <td>名字</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>birthday</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>生日</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>sex</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>性别（1：男 2：女）</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>email</td>
+        <td>varchar(45)</td>
+        <td></td>
+        <td>是</td>
+        <td>电子邮件</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>phone</td>
+        <td>varchar(45)</td>
+        <td></td>
+        <td>是</td>
+        <td>电话</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>roleid</td>
+        <td>varchar(255)</td>
+        <td></td>
+        <td>是</td>
+        <td>角色id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>deptid</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>部门id</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>status</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>状态(1：启用  2：冻结  3：删除）</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td>创建时间</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>version</td>
+        <td>int(11)</td>
+        <td></td>
+        <td>是</td>
+        <td>保留字段</td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>create_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_time</td>
+        <td>datetime</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    <tr style="background-color: #e8edff;">
+        <td>modify_by</td>
+        <td>bigint(20)</td>
+        <td></td>
+        <td>是</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

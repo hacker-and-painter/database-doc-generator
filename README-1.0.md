@@ -1,7 +1,6 @@
-# springboot实现数据库文档生成器 2.0
+# database-doc-generator 数据库文档生成器
 
 > 原项目地址 [database-doc-generator](https://github.com/enilu/database-doc-generator)
-> 使用springboot对原项目进行改造
 
 ## 1. 功能介绍
 
@@ -9,18 +8,59 @@
 
 ## 2. 快速使用
 
-idea打开项目, 运行项目后，在浏览器上打开swagger地址，运行
+使用idea打开，运行Main.java
 
-localhost:8080/swagger-ui.html
+输入完成后回车，即可生成数据库文档目录${dbname}-doc,目录中文档以markdown文件为载体：
 
-![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190623172830.png)
+![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190607194723.png)
 
 ### 2.1 使用MySQL数据库生成文档示例
+
+```bash
+1:MySQL
+2:Oracle
+3:PostgreSQL
+4:SQLServer
+Select the appropriate numbers choose database type
+(Enter 'c' to cancel):
+ 1
+input database name:
+guns-lite
+input host:
+localhost
+input port(default 3306):
+
+input username(default root):
+
+input password:
+root
+
+```
 
 ![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190615022129.png)
 
 ### 2.2 使用PostgreSQL数据库生成文档示例
 
+```
+choose database:
+1:MySQL
+2:Oracle
+3:PostgreSQL
+4:SQLServer
+Select the appropriate numbers choose database type
+(Enter 'c' to cancel):
+ 3
+input database name:
+test
+input host:
+localhost
+input port(default 5432):
+
+input username(default postgres):
+
+input password:
+root
+```
 
 ![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190615022203.png)
 
@@ -61,10 +101,6 @@ kill 查到的pid即可
 
 ![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190615023510.png)
 
-### 2.4 查看生成的HTMl页面和word文档
+## 3. 后续计划 TODO
 
-![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190623173459.png)
-
-![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190623173352.png)
-
-![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190623173420.png)
+使用springboot对代码进行改造，写个接口传入数据参数生成数据库文档，而不是运行Main.java

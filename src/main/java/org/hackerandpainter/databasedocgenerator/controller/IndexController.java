@@ -2,14 +2,13 @@ package org.hackerandpainter.databasedocgenerator.controller;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import javafx.beans.DefaultProperty;
 import org.hackerandpainter.databasedocgenerator.database.*;
 import org.nutz.dao.impl.SimpleDataSource;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Scanner;
 
 /**
  * @Description
@@ -17,6 +16,7 @@ import java.util.Scanner;
  * @Date 2019-06-07 19:16
  **/
 @RestController
+
 public class IndexController {
 
     @GetMapping("/generator")
@@ -26,9 +26,9 @@ public class IndexController {
             @ApiImplicitParam(name = "port", value = "端口", defaultValue = "5432", required = true),
             @ApiImplicitParam(name = "userName", value = "用户名", defaultValue = "postgres", required = true),
             @ApiImplicitParam(name = "password", value = "密码", defaultValue = "root", required = true),
-            @ApiImplicitParam(name = "serviceName", value = "oracle serviceName", required = false),
+            @ApiImplicitParam(name = "serviceName", value = "Oracle数据库才需要", required = false),
     })
-    public void generatorDatabaseDoc(String dbType,
+    public String generatorDatabaseDoc(String dbType,
                                      @RequestParam(defaultValue = "localhost") String ip,
                                      String databaseName,
                                      @RequestParam(defaultValue = "5432") String port,
@@ -82,6 +82,8 @@ public class IndexController {
         }
 
         generator.generateDoc();
+
+        return "文档生成成功";
     }
 
     private static String getDefaultPort(String dbType) {
