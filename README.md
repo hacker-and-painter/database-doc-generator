@@ -9,7 +9,7 @@
 
 ## 2. 快速使用
 
-idea打开项目, 运行项目后，在浏览器上打开swagger地址，运行
+idea打开项目, 运行项目后，在浏览器上打开swagger地址，填写数据库参数，执行generator接口
 
 localhost:8080/swagger-ui.html
 
