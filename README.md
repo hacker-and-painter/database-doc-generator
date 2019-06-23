@@ -66,6 +66,6 @@ kill 查到的pid即可
 
 ![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190623173459.png)
 
-![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190623173352.png)
+![](https://raw.githubusercontent.com/gaohanghang/images/master/imgscreely-1561283362892.png)
 
 ![](https://raw.githubusercontent.com/gaohanghang/images/master/img20190623173420.png)
