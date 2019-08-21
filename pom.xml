@@ -69,16 +69,17 @@
             <version>3.12</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc14</artifactId>
-            <version>10.2.0.4.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/sqljdbc42 -->
+<!--        <dependency>-->
+<!--            <groupId>com.oracle.jdbc</groupId>-->
+<!--            <artifactId>ojdbc8</artifactId>-->
+<!--            <version>19.3.0.0</version>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc42</artifactId>
-            <version>6.0.8112</version>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>7.4.0.jre8</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
