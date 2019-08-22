@@ -57,6 +57,7 @@ public abstract class Generator {
     public void save2File(List<TableVo> tables) {
         saveSummary(tables);
         saveReadme(tables);
+        saveMerge(tables);
         for (TableVo tableVo : tables) {
             saveTableFile(tableVo);
         }
@@ -91,6 +92,40 @@ public abstract class Generator {
         try {
             Files.write(new File(docPath + File
                     .separator + "README.md"), builder.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * MERGE 合并表结构文档
+     * @param tables
+     */
+    private void saveMerge(List<TableVo> tables) {
+        StringBuilder builder = new StringBuilder("# ").append(dbName).append("数据库设计文档").append("\r\n")
+                .append("\r\n");
+        //for (TableVo tableVo : tables) {
+        //    String name = Strings.isEmpty(tableVo.getComment()) ? tableVo.getTable() : tableVo.getComment();
+        //    builder.append(name).append(" ").append(tableVo.getTable()).append("\r\n");
+        //}
+
+        for (TableVo tableVo : tables) {
+            builder.append("### " + (Strings.isBlank(tableVo.getComment()) ? tableVo.getTable() : tableVo
+                    .getComment()) + "(" + tableVo.getTable() + ")").append("\r\n");
+            builder.append("| 列名   | 类型   | KEY  | 可否为空 | 注释   |").append("\r\n");
+            builder.append("| ---- | ---- | ---- | ---- | ---- |").append("\r\n");
+            List<ColumnVo> columnVos = tableVo.getColumns();
+            for (int i = 0; i < columnVos.size(); i++) {
+                ColumnVo column = columnVos.get(i);
+                builder.append("|").append(column.getName()).append("|").append(column.getType()).append("|").append
+                        (Strings.sNull(column.getKey())).append("|").append(column.getIsNullable()).append("|").append
+                        (column.getComment()).append("|\r\n");
+            }
+        }
+
+        try {
+            Files.write(new File(docPath + File
+                    .separator + dbName + ".md"), builder.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
