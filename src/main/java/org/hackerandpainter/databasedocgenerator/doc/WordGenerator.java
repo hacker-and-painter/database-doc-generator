@@ -43,12 +43,12 @@ public class WordGenerator {
         map.put("tables", list);
         try {
             Template template = configuration.getTemplate("templates/database.html");
-            String name = dbName + "-doc" + File.separator + dbName + ".html";
-            File f = new File(name);
+            String name =  File.separator + dbName + ".html";
+            File f = new File(savePath + name);
             Writer w = new OutputStreamWriter(new FileOutputStream(f), "utf-8");
             template.process(map, w);
             w.close();
-            new Html2DocConverter(dbName + "-doc" + File.separator + dbName + ".html", savePath + File
+            new Html2DocConverter(savePath + File.separator + dbName + ".html", savePath + File
                     .separator + dbName + ".doc")
                     .writeWordFile();
         } catch (Exception ex) {

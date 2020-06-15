@@ -1,5 +1,6 @@
 package org.hackerandpainter.databasedocgenerator.database;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.UUID;
 import org.hackerandpainter.databasedocgenerator.bean.ColumnVo;
 import org.hackerandpainter.databasedocgenerator.bean.TableVo;
@@ -49,7 +50,7 @@ public abstract class Generator {
         savePath = home + "/" + UUID.fastUUID() + "/" + docPath;
         File docDir = new File(savePath);
         if (docDir.exists()) {
-            docDir.delete();
+            FileUtil.clean(docDir);
         } else {
             docDir.mkdirs();
         }
@@ -65,9 +66,7 @@ public abstract class Generator {
         saveSummary(tables, savePath);
         saveReadme(tables, savePath);
         saveMerge(tables, savePath);
-        for (TableVo tableVo : tables) {
-            saveTableFile(tableVo, savePath);
-        }
+        tables.parallelStream().forEach(tableVo -> saveTableFile(tableVo, savePath));
 
     }
 
@@ -79,8 +78,7 @@ public abstract class Generator {
             builder.append("* [" + name + "](" + tableVo.getTable() + ".md)").append("\r\n");
         }
         try {
-            Files.write(new File(docPath + File
-                    .separator + "SUMMARY.md"), builder.toString());
+            Files.write(new File(savePath + File.separator + "SUMMARY.md"), builder.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,15 +108,10 @@ public abstract class Generator {
      * @param tables
      */
     private void saveMerge(List<TableVo> tables, String savePath) {
-        StringBuilder builder = new StringBuilder("# ").append(dbName).append("数据库设计文档").append("\r\n")
+        StringBuffer builder = new StringBuffer("# ").append(dbName).append("数据库设计文档").append("\r\n")
                 .append("\r\n");
-        //for (TableVo tableVo : tables) {
-        //    String name = Strings.isEmpty(tableVo.getComment()) ? tableVo.getTable() : tableVo.getComment();
-        //    builder.append(name).append(" ").append(tableVo.getTable()).append("\r\n");
-        //}
-
-        for (TableVo tableVo : tables) {
-            builder.append("### " + (Strings.isBlank(tableVo.getComment()) ? tableVo.getTable() : tableVo
+        tables.parallelStream().forEach(tableVo -> {
+            builder.append("#### " + (Strings.isBlank(tableVo.getComment()) ? tableVo.getTable() : tableVo
                     .getComment()) + "(" + tableVo.getTable() + ")").append("\r\n");
             builder.append("| 列名   | 类型   | KEY  | 可否为空 | 注释   |").append("\r\n");
             builder.append("| ---- | ---- | ---- | ---- | ---- |").append("\r\n");
@@ -129,11 +122,9 @@ public abstract class Generator {
                         (Strings.sNull(column.getKey())).append("|").append(column.getIsNullable()).append("|").append
                         (column.getComment()).append("|\r\n");
             }
-        }
-
+        });
         try {
-            Files.write(new File(savePath + File
-                    .separator + dbName + ".md"), builder.toString());
+            Files.write(new File(savePath + File.separator + dbName + ".md"), builder.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
