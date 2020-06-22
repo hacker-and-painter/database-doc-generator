@@ -1,5 +1,7 @@
 package org.hackerandpainter.databasedocgenerator.database;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.UUID;
 import org.hackerandpainter.databasedocgenerator.bean.ColumnVo;
 import org.hackerandpainter.databasedocgenerator.bean.TableVo;
 import org.hackerandpainter.databasedocgenerator.doc.WordGenerator;
@@ -22,6 +24,7 @@ import java.util.List;
  * @version 2019/1/6 0006
  */
 public abstract class Generator {
+    private static String savePath = "";
     private SimpleDataSource dataSource;
     protected Dao dao = null;
     protected String dbName;
@@ -34,37 +37,40 @@ public abstract class Generator {
         this.docPath = dbName + "-doc";
     }
 
+
+    public abstract List<TableVo> getTableData();
+
     /**
      * 获取表结构数据
      *
-     * @return
+     * @return 返回文件存储地址
      */
-    public abstract List<TableVo> getTableData();
-
-    public void generateDoc() {
-        File docDir = new File(docPath);
+    public String generateDoc() {
+        String home = System.getProperty("user.home");
+        savePath = home + "/" + UUID.fastUUID() + "/" + docPath;
+        File docDir = new File(savePath);
         if (docDir.exists()) {
-            throw new RuntimeException("该文件夹" + docPath + "已存在");
+            FileUtil.clean(docDir);
         } else {
             docDir.mkdirs();
         }
         List<TableVo> list = getTableData();
-        save2File(list);
+        save2File(list, savePath);
         //保存word
-        WordGenerator.createDoc(dbName,list);
-    }
-
-    public void save2File(List<TableVo> tables) {
-        saveSummary(tables);
-        saveReadme(tables);
-        saveMerge(tables);
-        for (TableVo tableVo : tables) {
-            saveTableFile(tableVo);
-        }
+        WordGenerator.createDoc(dbName, list, savePath);
+        return savePath;
 
     }
 
-    private void saveSummary(List<TableVo> tables) {
+    public void save2File(List<TableVo> tables, String savePath) {
+        saveSummary(tables, savePath);
+        saveReadme(tables, savePath);
+        saveMerge(tables, savePath);
+        tables.parallelStream().forEach(tableVo -> saveTableFile(tableVo, savePath));
+
+    }
+
+    private void saveSummary(List<TableVo> tables, String savePath) {
         StringBuilder builder = new StringBuilder("# Summary").append("\r\n").append("* [Introduction](README.md)")
                 .append("\r\n");
         for (TableVo tableVo : tables) {
@@ -72,14 +78,13 @@ public abstract class Generator {
             builder.append("* [" + name + "](" + tableVo.getTable() + ".md)").append("\r\n");
         }
         try {
-            Files.write(new File(docPath + File
-                    .separator + "SUMMARY.md"), builder.toString());
+            Files.write(new File(savePath + File.separator + "SUMMARY.md"), builder.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void saveReadme(List<TableVo> tables) {
+    private void saveReadme(List<TableVo> tables, String savePath) {
         StringBuilder builder = new StringBuilder("# " + dbName + "数据库文档").append("\r\n");
         for (TableVo tableVo : tables) {
             builder.append("- [" + (Strings.isEmpty(tableVo.getComment()) ? tableVo.getTable() : tableVo.getComment())
@@ -90,7 +95,7 @@ public abstract class Generator {
                             ("\r\n");
         }
         try {
-            Files.write(new File(docPath + File
+            Files.write(new File(savePath + File
                     .separator + "README.md"), builder.toString());
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,18 +104,14 @@ public abstract class Generator {
 
     /**
      * MERGE 合并表结构文档
+     *
      * @param tables
      */
-    private void saveMerge(List<TableVo> tables) {
-        StringBuilder builder = new StringBuilder("# ").append(dbName).append("数据库设计文档").append("\r\n")
+    private void saveMerge(List<TableVo> tables, String savePath) {
+        StringBuffer builder = new StringBuffer("# ").append(dbName).append("数据库设计文档").append("\r\n")
                 .append("\r\n");
-        //for (TableVo tableVo : tables) {
-        //    String name = Strings.isEmpty(tableVo.getComment()) ? tableVo.getTable() : tableVo.getComment();
-        //    builder.append(name).append(" ").append(tableVo.getTable()).append("\r\n");
-        //}
-
-        for (TableVo tableVo : tables) {
-            builder.append("### " + (Strings.isBlank(tableVo.getComment()) ? tableVo.getTable() : tableVo
+        tables.parallelStream().forEach(tableVo -> {
+            builder.append("#### " + (Strings.isBlank(tableVo.getComment()) ? tableVo.getTable() : tableVo
                     .getComment()) + "(" + tableVo.getTable() + ")").append("\r\n");
             builder.append("| 列名   | 类型   | KEY  | 可否为空 | 注释   |").append("\r\n");
             builder.append("| ---- | ---- | ---- | ---- | ---- |").append("\r\n");
@@ -121,17 +122,15 @@ public abstract class Generator {
                         (Strings.sNull(column.getKey())).append("|").append(column.getIsNullable()).append("|").append
                         (column.getComment()).append("|\r\n");
             }
-        }
-
+        });
         try {
-            Files.write(new File(docPath + File
-                    .separator + dbName + ".md"), builder.toString());
+            Files.write(new File(savePath + File.separator + dbName + ".md"), builder.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void saveTableFile(TableVo table) {
+    private void saveTableFile(TableVo table, String savePath) {
 
         StringBuilder builder = new StringBuilder("# " + (Strings.isBlank(table.getComment()) ? table.getTable() : table
                 .getComment()) + "(" + table.getTable() + ")").append("\r\n");
@@ -145,7 +144,7 @@ public abstract class Generator {
                     (column.getComment()).append("|\r\n");
         }
         try {
-            Files.write(new File(docPath + File
+            Files.write(new File(savePath + File
                     .separator + table.getTable() + ".md"), builder.toString());
         } catch (Exception e) {
             e.printStackTrace();

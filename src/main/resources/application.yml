@@ -25,7 +25,7 @@ swagger:
   license-url: "https://www.apache.org/licenses/LICENSE-2.0.html"
 
 server:
-  port: 8080
+  port: 9999
 
 spring:
   freemarker:

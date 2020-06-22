@@ -37,51 +37,24 @@ public class WordGenerator {
         throw new AssertionError();
     }
 
-    public static void createDoc(String dbName, List<TableVo> list) {
+    public static void createDoc(String dbName, List<TableVo> list, String savePath) {
         Map map = new HashMap();
         map.put("dbName", dbName);
         map.put("tables", list);
         try {
             Template template = configuration.getTemplate("templates/database.html");
-            String name = dbName + "-doc" + File.separator + dbName + ".html";
-            File f = new File(name);
+            String name =  File.separator + dbName + ".html";
+            File f = new File(savePath + name);
             Writer w = new OutputStreamWriter(new FileOutputStream(f), "utf-8");
             template.process(map, w);
             w.close();
-            new Html2DocConverter(dbName + "-doc" + File.separator + dbName + ".html", dbName + "-doc" + File
+            new Html2DocConverter(savePath + File.separator + dbName + ".html", savePath + File
                     .separator + dbName + ".doc")
                     .writeWordFile();
         } catch (Exception ex) {
             ex.printStackTrace();
 
         }
-
-    }
-
-
-    public static void main(String[] args) throws Exception {
-        Map<String, Object> map = new HashMap<String, Object>();
-        List<TableVo> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            TableVo tableVo = new TableVo();
-            tableVo.setTable("表" + i);
-            tableVo.setComment("注释" + i);
-            List<ColumnVo> columns = new ArrayList<>();
-            for (int j = 0; j < 5; j++) {
-                ColumnVo columnVo = new ColumnVo();
-                columnVo.setName("name" + j);
-                columnVo.setComment("注释" + j);
-                columnVo.setKey("PRI");
-                columnVo.setIsNullable("是");
-                columnVo.setType("varchar(2");
-                columns.add(columnVo);
-
-            }
-            tableVo.setColumns(columns);
-            list.add(tableVo);
-        }
-
-        createDoc("test", list);
 
     }
 
